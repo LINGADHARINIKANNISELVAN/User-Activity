@@ -1,7 +1,17 @@
 import React, { useState } from "react";
-import { Form, Alert, Card,Container } from "react-bootstrap";
+import { Form, Alert, Card, Container } from "react-bootstrap";
 import Login from "./Login";
+import Button from "@material-ui/core/Button";
+import Box from "@mui/material/Box";
+import MenuItem from "@mui/material/MenuItem";
+import TextField from "@mui/material/TextField";
 
+const Profession = [
+  { value: "Front End", label: "Front End" },
+  { value: "Java", label: "Java" },
+  { value: "Back End", label: "Back End" },
+  { value: "Full stack", label: "Full Stack" },
+];
 function Registration() {
   const [name, setName] = useState([]);
   const [email, setEmail] = useState([]);
@@ -36,81 +46,97 @@ function Registration() {
   }
   return (
     <>
-      <div> <Container><Card style={{marginLeft:300, width:500, height: 500,border: 0}}>
-        {login ? (
-          <form onSubmit={handleFormSubmit}>
-            <h3>Register</h3>
+      <div>
+        {" "}
+        <Box
+          sx={{
+            textAlign: "center",
+            width: 500,
+            height: 500,
+            boxShadow: 1,
+            marginLeft: 50,
+            marginTop: 10,
+            paddingTop: 2,
+            "& .MuiTextField-root": { m: 1, width: "25ch" },
+          }}
+        >
+          {login ? (
+            <form onSubmit={handleFormSubmit}>
+              <h3>Register</h3>
 
-            <div className="form-group">
-              <label>Name</label>
-              <input
-                type="text"
-                className="form-control"
-                placeholder="Enter Full Name"
-                name="name"
-                onChange={(event) => setName(event.target.value)}
-              />
-            </div>
+              <div>
+                <TextField
+                  required
+                  id="outlined-required"
+                  name="name"
+                  label="Name"
+                  onChange={(event) => setName(event.target.value)}
+                />
+              </div>
 
-            <div className="form-group">
-              <label>Email</label>
-              <input
-                type="email"
-                className="form-control"
-                placeholder="Enter email"
-                onChange={(event) => setEmail(event.target.value)}
-              />
-            </div>
+              <div>
+                <TextField
+                  required
+                  id="outlined-required"
+                  type="email"
+                  label="Email"
+                  onChange={(event) => setEmail(event.target.value)}
+                />
+              </div>
 
-            <div className="form-group">
-              <label>Password</label>
-              <input
-                type="password"
-                className="form-control"
-                placeholder="Enter password"
-                onChange={(event) => setPassword(event.target.value)}
-              />
-            </div>
+              <div>
+                <TextField
+                  id="outlined-password-input"
+                  label="Password"
+                  type="password"
+                  onChange={(event) => setPassword(event.target.value)}
+                />
+              </div>
 
-            <div className="form-group">
-              <label>Phone No.</label>
-              <input
-                type="Phone"
-                className="form-control"
-                placeholder="Enter contact no"
-                onChange={(event) => setPhone(event.target.value)}
-              />
-            </div>
+              <div>
+                <TextField
+                  required
+                  id="outlined-required"
+                  name="number"
+                  label="Contact Number"
+                  type="number"
+                  onChange={(event) => setPhone(event.target.value)}
+                />
+              </div>
 
-            <div className="form-group">
-              <label>Choose your Profession</label>
-              <Form.Control
-                as="select"
-                onChange={(event) => setProfession(event.target.value)}
-              >
-                <option>Select</option>
-                <option>Front End</option>
-                <option>Java</option>
-                <option>Backend</option>
-                <option>Full Stack</option>
-              </Form.Control>
-            </div>
+              <div >
+                <TextField sx={{width: 220}}
+                  id="outlined-select-profession"
+                  select
+                  label="Choose your Profession"
+                  value={profession}
+                  onChange={(event) => setProfession(event.target.value)}
+                  
+                >
+                  {Profession.map((option) => (
+                    <MenuItem key={option.value} value={option.value}>
+                      {option.label}
+                    </MenuItem>
+                  ))}
+                </TextField>
+              </div>
 
-            <button type="submit" className="btn btn-dark btn-lg btn-block">
-              Register
-            </button>
-            <p onClick={handleClick} className="forgot-password text-right">
-              Already registered log in?
-            </p>
-            {flag && (
-              <Alert color="primary" variant="danger">
-                Please fill the empty fields!
-              </Alert>
-            )}
-          </form>
-        ) : (
-          <Login />
-        )}</Card></Container>
+              <Button type="submit" variant="contained" color="primary">
+                Register
+              </Button>
+              <p onClick={handleClick} color="primary">
+                Already registered log in?
+              </p>
+              {flag && (
+                <Alert color="primary" variant="danger">
+                  Please fill the empty fields!
+                </Alert>
+              )}
+            </form>
+          ) : (
+            <Login />
+          )}
+        </Box>
       </div>
     </>
   );

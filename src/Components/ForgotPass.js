@@ -1,13 +1,16 @@
 import { React, useState } from "react";
 import Resetpass from "./Resetpass";
-//import Userfront from "@userfront/core";
+
+import Button from "@material-ui/core/Button";
+import Box from "@mui/material/Box";
+import TextField from "@mui/material/TextField";
 
 function ForgotPass() {
   const [emaillog, setEmaillog] = useState(" ");
 
- // const [flag, setFlag] = useState(false);
- //const [home, setHome] = useState(true);
-  const[login,setLogin]=useState(true);
+  // const [flag, setFlag] = useState(false);
+  //const [home, setHome] = useState(true);
+  const [login, setLogin] = useState(true);
 
   function handleFormSubmit(e) {
     e.preventDefault();
@@ -23,30 +26,43 @@ function ForgotPass() {
       setLogin(true);
     } else {
       setLogin(!login);
-    //   Userfront.init(name);
-    //   Userfront.sendResetLink("lingadharini.k@gmail.com");
+      //   Userfront.init(name);
+      //   Userfront.sendResetLink("lingadharini.k@gmail.com");
       console.log(emaillog);
-    console.log("Please check ur mail");
-  }}
+      console.log("Please check ur mail");
+    }
+  }
   return (
     <>
       {login ? (
         <div>
-          <h1>Forgot Password</h1>
-          <div className="form-group">
+          <Box
+            sx={{
+              textAlign: "center",
+              width: 250,
+              height: 250,
+              boxShadow: 1,
+              marginLeft: 50,
+              marginTop: 10,
+              paddingTop: 2,
+              "& .MuiTextField-root": { m: 1, width: "25ch" },
+            }}
+          >
+            <h1>Forgot Password</h1>
+
             <form onSubmit={handleFormSubmit}>
-              <label>Email</label>
-              <input
+              <TextField
+                required
+                id="outlined-required"
                 type="email"
-                className="form-control"
-                placeholder="Enter email"
+                label="Enter Email"
                 onChange={(event) => setEmaillog(event.target.value)}
               />
-              <button type="submit" className="btn btn-dark btn-lg btn-block">
+              <Button type="submit" variant="contained" color="primary">
                 Submit
-              </button>
+              </Button>
             </form>
-          </div>
+          </Box>
         </div>
       ) : (
         <Resetpass />

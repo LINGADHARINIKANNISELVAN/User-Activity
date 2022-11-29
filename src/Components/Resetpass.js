@@ -1,5 +1,8 @@
 import { React, useState } from "react";
 import Login from "./Login";
+import Button from "@material-ui/core/Button";
+import Box from "@mui/material/Box";
+import TextField from "@mui/material/TextField";
 
 export default function Resetpass() {
   const [password, setPassword] = useState([]);
@@ -31,38 +34,49 @@ export default function Resetpass() {
       <div>
         {login ? (
           <>
-            <h1>Reset password</h1>
-            <h6>Please enter new password </h6>
-            <form onSubmit={handleFormSubmit}>
-              <div className="form-group">
-                <label>Password</label>
-                <input
-                  type="password"
-                  className="form-control"
-                  placeholder="Enter password"
-                  onChange={(event) => setPassword(event.target.value)}
-                />
-              </div>
-              <div className="form-group">
-                <label>Retype Password</label>
-                <input
-                  type="password"
-                  className="form-control"
-                  placeholder="Enter password"
-                  onChange={(event) => setrPassword(event.target.value)}
-                />
-              </div>
-              <div>
-                <button type="submit" className="btn btn-dark btn-lg btn-block">
-                  Submit
-                </button>
-              </div>
-            </form>
+            <Box
+              sx={{
+                textAlign: "center",
+                width: 500,
+                height: 250,
+                boxShadow: 1,
+                marginLeft: 50,
+                marginTop: 10,
+                paddingTop: 2,
+                "& .MuiTextField-root": { m: 1, width: "25ch" },
+              }}
+            >
+              <h1>Reset password</h1>
+
+              <form onSubmit={handleFormSubmit}>
+                <div>
+                  <TextField
+                    id="outlined-password-input"
+                    label="Enter new Password"
+                    type="password"
+                    onChange={(event) => setPassword(event.target.value)}
+                  />
+                </div>
+                <div>
+                  <TextField
+                    id="outlined-password-input"
+                    label="Retype Password"
+                    type="password"
+                    onChange={(event) => setrPassword(event.target.value)}
+                  />
+                </div>
+                <div>
+                  <Button type="submit" variant="contained" color="primary">
+                    Submit
+                  </Button>
+                </div>
+              </form>
+            </Box>{" "}
           </>
         ) : (
           <Login />
         )}
-      </div>
+      </div>{" "}
     </>
   );
 }

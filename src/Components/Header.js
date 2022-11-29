@@ -28,11 +28,11 @@ export default function Header() {
     <React.Fragment>
       <AppBar>
         <Toolbar>
-          <CorporateFareIcon sx={{ fontSize: 40 }} href="/Home"/>
+          <CorporateFareIcon sx={{ fontSize: 40 }} onClick={"./Home"}/>
 
           {isMatch ? (
             <>
-              <Typography sx={{ fontSize: "1.5rem", paddingLeft: "10%" }}>
+              <Typography sx={{ fontSize: "1.5rem"}}>
                 Hello
               </Typography>
 
@@ -48,7 +48,7 @@ export default function Header() {
                 indicatorColor="secondary"
               >
                 <Tab label="Login" href="/Login" />
-                <Tab label="Products" href="/Cardview" />
+                <Tab label="Products" href="/Newcard" />
                 <Tab label="UserList" href="/Table"/>
                 <Tab label="Services" href="/Login" />
                 <Tab label="Contact Us" href="/Contact" />
